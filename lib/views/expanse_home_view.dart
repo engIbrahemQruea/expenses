@@ -35,6 +35,23 @@ class ExpanseHomeView extends StatelessWidget {
           'Expanses App',
           textAlign: TextAlign.center,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return const SizedBox(
+                    height: 200,
+                    width: double.infinity,
+                    child: Text('hi'),
+                  );
+                },
+              );
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
       body: Center(
         child: Expanded(
