@@ -1,6 +1,8 @@
 import 'package:expenses/models/expenses_model.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/expanse_list_view.dart';
+
 class ExpanseHomeView extends StatelessWidget {
   ExpanseHomeView({super.key});
 
@@ -36,13 +38,7 @@ class ExpanseHomeView extends StatelessWidget {
       ),
       body: Center(
         child: Expanded(
-          child: ListView.builder(
-              itemCount: expanseModel.length,
-              itemBuilder: (context, index) {
-                return Text(
-                  expanseModel[index].title,
-                );
-              }),
+          child: ExpanseListView(expanseModel: expanseModel),
         ),
       ),
     );
