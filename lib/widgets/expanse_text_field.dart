@@ -10,6 +10,7 @@ class ExpanseTextField extends StatefulWidget {
 
 class _ExpanseTextFieldState extends State<ExpanseTextField> {
   final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   void dispose() {
@@ -30,11 +31,30 @@ class _ExpanseTextFieldState extends State<ExpanseTextField> {
               label: Text('Title'),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              log(titleController.text);
-            },
-            child: const Text('Save Expanses'),
+          TextField(
+            controller: amountController,
+            keyboardType: TextInputType.number,
+            maxLength: 50,
+            decoration: const InputDecoration(
+              label: Text('Amount'),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  log(titleController.text);
+                },
+                child: const Text('Save Expanses'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Cancel'),
+              ),
+            ],
           ),
         ],
       ),
