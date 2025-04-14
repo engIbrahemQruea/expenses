@@ -1,5 +1,8 @@
+import 'package:expenses/models/expenses_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
+
+import 'package:intl/intl.dart';
 
 class ExpanseTextField extends StatefulWidget {
   const ExpanseTextField({super.key});
@@ -11,6 +14,8 @@ class ExpanseTextField extends StatefulWidget {
 class _ExpanseTextFieldState extends State<ExpanseTextField> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+  DateTime? _selectedDate;
 
   @override
   void dispose() {
@@ -31,13 +36,48 @@ class _ExpanseTextFieldState extends State<ExpanseTextField> {
               label: Text('Title'),
             ),
           ),
-          TextField(
-            controller: amountController,
-            keyboardType: TextInputType.number,
-            maxLength: 50,
-            decoration: const InputDecoration(
-              label: Text('Amount'),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: amountController,
+                  keyboardType: TextInputType.number,
+                  maxLength: 50,
+                  decoration: const InputDecoration(
+                    label: Text('Amount'),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      _selectedDate == null
+                          ? 'NoSelectedDate'
+                          : DateFormat.yMd().format(_selectedDate!),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        final now = DateTime.now();
+                        final firstDate =
+                            DateTime(now.year - 1, now.month, now.day);
+                        final DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: now,
+                          firstDate: firstDate,
+                          lastDate: now,
+                        );
+                        setState(() {
+                          _selectedDate = pickedDate;
+                        });
+                      },
+                      icon: Icon(Icons.calendar_month),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
