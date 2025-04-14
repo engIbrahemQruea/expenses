@@ -94,7 +94,15 @@ class _ExpanseTextFieldState extends State<ExpanseTextField> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  log(titleController.text);
+                  final double? enteredAmount =
+                      double.tryParse(amountController.text);
+                  final bool amountIsInvaild =
+                      enteredAmount == null || enteredAmount <= 0;
+                  if (titleController.text.trim().isEmpty ||
+                      amountIsInvaild ||
+                      _selectedDate == null) {
+                    log('error');
+                  }
                 },
                 child: const Text('Save Expanses'),
               ),
