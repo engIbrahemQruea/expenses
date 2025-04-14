@@ -2,6 +2,7 @@ import 'package:expenses/models/expenses_model.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/expanse_list_view.dart';
+import '../widgets/expanse_text_field.dart';
 
 class ExpanseHomeView extends StatelessWidget {
   ExpanseHomeView({super.key});
@@ -42,14 +43,14 @@ class ExpanseHomeView extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return const SizedBox(
-                    height: 200,
+                    height: 400,
                     width: double.infinity,
-                    child: Text('hi'),
+                    child: ExpanseTextField(),
                   );
                 },
               );
             },
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
