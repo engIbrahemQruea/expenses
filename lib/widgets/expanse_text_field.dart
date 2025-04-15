@@ -101,7 +101,21 @@ class _ExpanseTextFieldState extends State<ExpanseTextField> {
                   if (titleController.text.trim().isEmpty ||
                       amountIsInvaild ||
                       _selectedDate == null) {
-                    log('error');
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                          title: Text('Invalid Input'),
+                          content: Text(
+                              'Please make sure all fields are valid title, amount and date.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(ctx);
+                              },
+                              child: const Text('OK'),
+                            ),
+                          ]),
+                    );
                   }
                 },
                 child: const Text('Save Expanses'),
