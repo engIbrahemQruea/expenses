@@ -39,6 +39,10 @@ class _ExpanseHomeViewState extends State<ExpanseHomeView> {
     });
   }
 
+  void _removeExpanse(ExpensesModel expanse) {
+    expanseModel.remove(expanse);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +73,10 @@ class _ExpanseHomeViewState extends State<ExpanseHomeView> {
       ),
       body: Center(
         child: Expanded(
-          child: ExpanseListView(expanseModel: expanseModel),
+          child: ExpanseListView(
+            expanseModel: expanseModel,
+            onRemoveExpanse: _removeExpanse,
+          ),
         ),
       ),
     );
