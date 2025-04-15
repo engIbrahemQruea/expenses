@@ -19,7 +19,10 @@ class ExpanseItems extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            Text(expanseModelItem.title),
+            Text(
+              expanseModelItem.title,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             Row(
               children: [
                 Text(
