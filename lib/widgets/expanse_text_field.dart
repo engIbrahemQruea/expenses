@@ -1,12 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'dart:developer';
-
 import 'package:intl/intl.dart';
 
 import '../models/expenses_model.dart';
 
 class ExpanseTextField extends StatefulWidget {
-  const ExpanseTextField({super.key});
+  const ExpanseTextField({
+    Key? key,
+    required this.onAddExpanse,
+  }) : super(key: key);
+
+  final void Function(ExpensesModel expanse) onAddExpanse;
 
   @override
   State<ExpanseTextField> createState() => _ExpanseTextFieldState();
@@ -115,6 +119,15 @@ class _ExpanseTextFieldState extends State<ExpanseTextField> {
                               child: const Text('OK'),
                             ),
                           ]),
+                    );
+                  } else {
+                    widget.onAddExpanse(
+                      ExpensesModel(
+                        title: titleController.text,
+                        amount: enteredAmount,
+                        date: _selectedDate!,
+                        category: _selectedCategory,
+                      ),
                     );
                   }
                 },

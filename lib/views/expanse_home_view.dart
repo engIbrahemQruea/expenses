@@ -33,6 +33,12 @@ class _ExpanseHomeViewState extends State<ExpanseHomeView> {
     ),
   ];
 
+  void _addExpanse(ExpensesModel expanse) {
+    setState(() {
+      expanseModel.add(expanse);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +52,13 @@ class _ExpanseHomeViewState extends State<ExpanseHomeView> {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-                builder: (context) {
-                  return const SizedBox(
+                builder: (ctx) {
+                  return SizedBox(
                     height: 400,
                     width: double.infinity,
-                    child: ExpanseTextField(),
+                    child: ExpanseTextField(
+                      onAddExpanse: _addExpanse,
+                    ),
                   );
                 },
               );
