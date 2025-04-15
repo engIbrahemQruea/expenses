@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import '../widgets/expanse_list_view.dart';
 import '../widgets/expanse_text_field.dart';
 
-class ExpanseHomeView extends StatelessWidget {
+class ExpanseHomeView extends StatefulWidget {
   ExpanseHomeView({super.key});
 
+  @override
+  State<ExpanseHomeView> createState() => _ExpanseHomeViewState();
+}
+
+class _ExpanseHomeViewState extends State<ExpanseHomeView> {
   final List<ExpensesModel> expanseModel = [
     ExpensesModel(
       title: 'title1',
