@@ -22,3 +22,21 @@ class ExpensesModel {
 
   String get getFormattedDate => dateFormat.format(date);
 }
+
+class ExpanseBucket {
+  final Category category;
+  final List<ExpensesModel> expanses;
+
+  ExpanseBucket(this.category, this.expanses);
+
+  ExpanseBucket.forCategory(this.category, List<ExpensesModel> allExpanses)
+      : expanses = allExpanses.where((e) => e.category == category).toList();
+
+  double get totalExpanses {
+    double sum = 0;
+    for (var expanse in expanses) {
+      sum += expanse.amount;
+    }
+    return sum;
+  }
+}
